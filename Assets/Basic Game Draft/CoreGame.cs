@@ -6,29 +6,34 @@ using System.Linq;
 
 public enum Categoria
 {
-    Hard, Soft
+    Hard=0, Soft=1
 };
 
-//let's create a struct that keeps all the variables of every card
+//let's create a class that keeps all the variables of every card
 [System.Serializable]
 public class ProtoCard
 {
-    string name;
-    string initial;
-    Categoria category;
+    public string name;
+    public string initial;
+    public Categoria category;
     //Image picture; we will add pictures later
 
-    //this is the initialization function; its name is the same of the struct's one
-    public void ProtoCard(string n, string i, Categoria c)
+    //this is the initialization function;
+    public void Initialize_ProtoCard(string n, string i, Categoria c)
     {
         this.name = n;
-        initial = i;
-        category = c;
+        this.initial = i;
+        this.category = c;
     }
 
     public string GetNome
     {
         get { return name; }
+    }
+
+    public string GetIniziale
+    {
+        get { return initial; }
     }
 
     public Categoria GetCategoria
@@ -44,7 +49,7 @@ public class CoreGame : MonoBehaviour
 
     //names and the relative categories are added in the editor
     public string[] names;
-    public string[] categories;
+    public Categoria[] categories;
 
     //this is the general card prefab, we will modify it with the current card specifications
     public GameObject cardPrefab;
@@ -74,7 +79,8 @@ public class CoreGame : MonoBehaviour
             //I get the initial as the first letter of the name
             string curInitial = curName[0].ToString();
             //I create a card and I add it to the list
-            cardsList.Add(new ProtoCard(curName, curInitial, categories[i]));
+            cardsList.Add(new ProtoCard());
+            cardsList.Last().Initialize_ProtoCard(curName, curInitial, categories[i]);
         }
         //Let's spawn the first card of the level!
         var tmp = cardsList.Where(x => x.name.ToUpper().Contains('F')).ToList();
@@ -96,11 +102,17 @@ public class CoreGame : MonoBehaviour
     }
 
     //this function is called when I click one of the two buttons on screen. They will give 'soft' or 'hard' as input strings
-    public void CheckResult(Categoria choice)
+    public void CheckResult(int choice)
     {
         //here I check if the input (choice) is the same as the category of the current card.
         //If it is, I increase the score by one. Otherwise, nothing happens.
-        if (choice == cardsList[curCardNumber].category)
+        Categoria cat_choice;
+        if (choice == 0)
+            cat_choice = Categoria.Hard;
+        else
+            cat_choice = Categoria.Soft;
+        
+        if (cat_choice == cardsList[curCardNumber].GetCategoria)
         {
             Debug.Log("Correct!");
             score++;

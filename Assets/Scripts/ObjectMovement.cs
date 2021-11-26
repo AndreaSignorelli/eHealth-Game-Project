@@ -7,7 +7,7 @@ public class ObjectMovement : MonoBehaviour
 {
 
     Transform idlePoint;
-    Text wordText;
+
     public float initSpeed = 2;
     public float exitSpeed = 5;
     public float maxDistance = 0.05f;
@@ -17,15 +17,17 @@ public class ObjectMovement : MonoBehaviour
 
     public bool isAngry = false;
 
-    public string thisCategory = "soft"; //or hard
-    public string thisName = "funghetto";
+    public Categoria thisCategory; //soft or hard
+    public string thisName;
+
+    public float oscillationRange = 0.0003f;
+
+    public float timeToDestroy = 5.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         idlePoint = GameObject.Find("Object Idle Point").transform;
-        wordText = GameObject.Find("Word Text").GetComponent<Text>();
-        SpawnText();
     }
 
     // Update is called once per frame
@@ -40,15 +42,26 @@ public class ObjectMovement : MonoBehaviour
             else movementType = 1;
         }
 
+        if (movementType == 1)
+        {
+            transform.position = new Vector3(transform.position.x, this.transform.position.y + Mathf.Sin(Time.time) * oscillationRange, transform.position.z);
+        }
+
         if (movementType == 2)
         {
             transform.Translate(Vector2.left * exitSpeed * Time.deltaTime);
         }
     }
 
-    public void SpawnText()
+    //public void SpawnText()
+    //{
+    //wordText.text = thisName;
+    //}
+
+    public void GetSpecifics(Categoria c, string n)
     {
-        wordText.text = thisName;
+        thisCategory = c;
+        thisName = n;
     }
 
     public void Charge()
@@ -76,33 +89,8 @@ public class ObjectMovement : MonoBehaviour
         else if (other.gameObject.tag == "Player" && isAngry)
         {
             other.gameObject.GetComponent<SpaceshipMovement>().TakeDamage();
+            StartCoroutine(DestroyAfterTime(timeToDestroy));
         }
-    }
-
-    public void CheckResult(string choice)
-    {
-        //here I check if the input (choice) is the same as the category of the current card.
-        //If it is, I increase the score by one. Otherwise, nothing happens.
-        if (choice == thisCategory)
-        {
-            Debug.Log("Correct!");
-            //score++;
-            GetCaptured();
-        }
-        else
-        {
-            Debug.Log("Error");
-            Charge();
-        }
-        //I destroy the current card
-        //Destroy(curCard);
-        //I increase the number of the current card, so I will spawn the next card in the deck
-        //curCardNumber++;
-        //If the number is not higher than the number of the cards available for the level, I proceed to create the next card
-        //if (curCardNumber < cardsList.Count)
-        //{
-        //SpawnCard(curCardNumber);
-        //}
     }
 
     IEnumerator ChangeColorOverTime(Color start, Color end, float duration)
@@ -118,6 +106,12 @@ public class ObjectMovement : MonoBehaviour
         }
         someColorValue = end; //without this, the value will end at something like 0.9992367
         GetComponent<SpriteRenderer>().color = someColorValue;
+    }
+
+    IEnumerator DestroyAfterTime(float t)
+    {
+        yield return new WaitForSeconds(t);
+        Destroy(this.gameObject);
     }
 
 }
