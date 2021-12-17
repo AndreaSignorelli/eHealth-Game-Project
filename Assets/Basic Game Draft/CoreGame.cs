@@ -16,14 +16,17 @@ public class ProtoCard
     public string name;
     public string initial;
     public Categoria category;
-    //Image picture; we will add pictures later
+    Sprite picture;
+    bool sound;
 
     //this is the initialization function;
-    public void Initialize_ProtoCard(string n, string i, Categoria c)
+    public void Initialize_ProtoCard(string n, string i, Categoria c, Sprite img, bool isSound)
     {
         this.name = n;
         this.initial = i;
         this.category = c;
+        this.picture = img;
+        this.sound = isSound;
     }
 
     public string GetNome
@@ -39,6 +42,16 @@ public class ProtoCard
     public Categoria GetCategoria
     {
         get { return category; }
+    }
+
+    public Sprite GetPic
+    {
+        get { return picture; }
+    }
+
+    public bool GetSound
+    {
+        get { return sound; }
     }
 
 }
@@ -80,7 +93,7 @@ public class CoreGame : MonoBehaviour
             string curInitial = curName[0].ToString();
             //I create a card and I add it to the list
             cardsList.Add(new ProtoCard());
-            cardsList.Last().Initialize_ProtoCard(curName, curInitial, categories[i]);
+            //cardsList.Last().Initialize_ProtoCard(curName, curInitial, categories[i]);
         }
         //Let's spawn the first card of the level!
         var tmp = cardsList.Where(x => x.name.ToUpper().Contains('F')).ToList();
