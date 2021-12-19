@@ -322,6 +322,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slection
       objectReference: {fileID: 0}
+    - target: {fileID: 6580508423558905926, guid: 9d31fe27589e9bd4595b1d991e15316d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6580508423558905944, guid: 9d31fe27589e9bd4595b1d991e15316d, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6580508423711751109, guid: 9d31fe27589e9bd4595b1d991e15316d, type: 3}
       propertyPath: m_Name
       value: GoButton

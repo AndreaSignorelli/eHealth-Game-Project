@@ -104,7 +104,7 @@ public class ObjectMovement : MonoBehaviour
         //play the angry animation
         isAngry = true;
         movementType = 2;
-        StartCoroutine(ChangeColorOverTime(GetComponent<SpriteRenderer>().color, Color.red, 1.0f));
+        //StartCoroutine(ChangeColorOverTime(GetComponent<SpriteRenderer>().color, Color.red, 1.0f));
         attackPose.SetActive(true);
         idlePose.SetActive(false);
         damagePose.SetActive(false);
@@ -115,13 +115,13 @@ public class ObjectMovement : MonoBehaviour
         //play the get captured animation
         isAngry = false;
         movementType = 3;
-        StartCoroutine(ChangeColorOverTime(GetComponent<SpriteRenderer>().color, Color.green, 1.0f));
+        //StartCoroutine(ChangeColorOverTime(GetComponent<SpriteRenderer>().color, Color.green, 1.0f));
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * 150f);
         GetComponent<Rigidbody2D>().gravityScale = 1.0f;
         idlePose.SetActive(false);
         damagePose.SetActive(true);
         attackPose.SetActive(false);
-
+        StartCoroutine(DestroyAfterTime(timeToDestroy));
 
     }
 
@@ -133,7 +133,7 @@ public class ObjectMovement : MonoBehaviour
             this.transform.position = new Vector3(9999, 99999, 0);
             if(last)
             {
-                StartCoroutine(levelManager.FinishLevel());
+                //StartCoroutine(levelManager.FinishLevel());
             }
         }
         else if (other.gameObject.tag == "Player" && isAngry)
@@ -142,7 +142,7 @@ public class ObjectMovement : MonoBehaviour
             StartCoroutine(DestroyAfterTime(timeToDestroy));
             if (last)
             {
-                StartCoroutine(levelManager.FinishLevel());
+                //StartCoroutine(levelManager.FinishLevel());
             }
         }
     }

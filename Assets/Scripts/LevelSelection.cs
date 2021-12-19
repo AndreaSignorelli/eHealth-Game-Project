@@ -55,4 +55,17 @@ public class LevelSelection : MonoBehaviour
     {
         SceneManager.LoadScene(n);
     }
+
+    public bool IsBossLevelUnlocked()
+    {
+        for (int j = 1; j < 5; j++)
+        {
+            int starCount = PlayerPrefs.GetInt("MaxStars" + (j).ToString());
+            if (starCount < 3)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }

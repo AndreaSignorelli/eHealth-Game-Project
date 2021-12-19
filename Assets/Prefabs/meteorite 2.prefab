@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1908312284777935676}
   - component: {fileID: 1785102945809474167}
   - component: {fileID: 1961839865108820158}
+  - component: {fileID: -2525460345242755860}
   m_Layer: 0
   m_Name: meteorite 2
   m_TagString: Untagged
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Sprite: {fileID: 21300000, guid: 1027cab07ed8a824882e15a9f8bfb8f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -101,3 +102,16 @@ MonoBehaviour:
   maxSize: 0.3
   minVelocity: 2
   maxVelocity: 10
+--- !u!114 &-2525460345242755860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6366338584680916987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2351f65a3b8a7fd458cb3d7f98bffe19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDestroy: 15

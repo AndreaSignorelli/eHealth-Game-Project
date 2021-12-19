@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using System;
+using System.IO;
 
 public class MainMenu : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class MainMenu : MonoBehaviour
     public Slider generalVolumeSlider;
 
     public Transform[] menuTabs;
+
+    public GameObject[] Badges;
 
     public void Start()
     {
@@ -35,6 +39,8 @@ public class MainMenu : MonoBehaviour
             Focus(9);
         }
         else Focus(0);
+
+        SpawnBadges();
 
     }
 
@@ -90,6 +96,26 @@ public class MainMenu : MonoBehaviour
     {
         string nome = GameObject.Find("EnterName").transform.Find("NomeText").GetComponent<Text>().text;
         PlayerPrefs.SetString("PlayerName", nome);
+    }
+
+    public void PrintReport()
+    {
+        string path = "Assets/Resources/report" + System.DateTime.Now + ".txt";
+        StreamWriter writer = new StreamWriter(path, true);
+        writer.WriteLine(PlayerPrefs.GetString("Report"));
+        writer.Close();
+    }
+
+    public void SpawnBadges()
+    {
+        for (int j = 1; j <= 5; j++)
+        {
+            int isBadge = PlayerPrefs.GetInt("Badge" + (j).ToString());
+            if (isBadge!=1)
+            {
+                Badges[j - 1].SetActive(false);
+            }
+        }
     }
 
 }

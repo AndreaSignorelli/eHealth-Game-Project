@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     public AudioClip[] audioClips;
 
     public GameObject enemyPrefab;
+    public GameObject[] enemyPrefab_boss;
     public Transform enemySpawner;
     public GameObject curEnemy;
 
@@ -52,6 +53,7 @@ public class LevelManager : MonoBehaviour
     public string report;
     public float levelScore;
     public float[] scoreRequiredPerStar;// = [15f, 25f, 35f]; official score thresholds?
+    public float badgeScore;
 
     public GameObject finishLevelScreen;
 
@@ -80,6 +82,8 @@ public class LevelManager : MonoBehaviour
     public AudioSource generalSource;
 
     string playerName;
+
+    public bool isBossLevel = false;
 
     void Awake()
     {
@@ -167,18 +171,21 @@ public class LevelManager : MonoBehaviour
             {
                 //dialogo finito
                 dialogueButton.onClick.AddListener(() => StartEnemySpawn());
+                dialogueButton.transform.Find("Text").GetComponent<Text>().text = "VAI!";
             }
             else
             {
                 //procedi nel dialogo
                 dialogueButton.onClick.AddListener(() => PrintDialogueThenSpawn(dialogueIndex, lineIndex, false));
+                dialogueButton.transform.Find("Text").GetComponent<Text>().text = "Avanti";
             }
         }
         else
         {
             dialogueButton.onClick.AddListener(() => StartEnemySpawn());
+            dialogueButton.transform.Find("Text").GetComponent<Text>().text = "VAI!";
         }
-        
+
     }
 
     public void StartEnemySpawn()
@@ -259,9 +266,15 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(curEnemy.gameObject);
         }
-        curEnemy = Instantiate(enemyPrefab, enemySpawner.position, this.transform.rotation);
+        if (isBossLevel) {
+            curEnemy = Instantiate(enemyPrefab_boss[Random.Range(0, enemyPrefab_boss.Length)], enemySpawner.position, this.transform.rotation);
+        } else
+        {
+            curEnemy = Instantiate(enemyPrefab, enemySpawner.position, this.transform.rotation);
 
-        if(curCardNumber==(cardsList.Count-1))
+        }
+
+        if (curCardNumber==(cardsList.Count-1))
         {
             curEnemy.GetComponent<ObjectMovement>().last = true;
         }
@@ -466,6 +479,11 @@ public class LevelManager : MonoBehaviour
             star3.SetActive(true);
         }
 
+        if(levelScore >= badgeScore)
+        {
+            UnlockBadge();
+        }
+
         //updating report with final level results:
         report = report + "Final score: " + levelScore + " - " + stars.ToString() + " Stars" + "\n\n";
 
@@ -493,6 +511,13 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void UnlockBadge()
+    {
+        PlayerPrefs.SetInt("Badge" + SceneManager.GetActiveScene().buildIndex, 1);
+        //show the badge on the UI
+        GameObject.Find("Badge").transform.localScale = new Vector3(1, 1, 1);
+    }
+
     public void TryAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -501,6 +526,11 @@ public class LevelManager : MonoBehaviour
     public void ReturnToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void GoToNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void UnlockNextLevel()
@@ -515,7 +545,11 @@ public class LevelManager : MonoBehaviour
         }
 
         //text on UI + sounds etc to show that the next level was unlocked
-
+        if (SceneManager.GetActiveScene().buildIndex < 4)
+        {
+            GameObject.Find("NextLevelButton").GetComponent<Button>().interactable = true;
+            GameObject.Find("NextLevelButton").GetComponent<Button>().onClick.AddListener(() => GoToNextLevel());
+        }
     }
 
     public void ResetReport()
