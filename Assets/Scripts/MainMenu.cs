@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour
 
         if(PlayerPrefs.GetString("PlayerName")=="")
         {
-            Focus(9);
+            Focus(1);
         }
         else Focus(0);
 
@@ -77,19 +77,27 @@ public class MainMenu : MonoBehaviour
 
     public void Focus(int i) //0 = main menu, 1 = options, 2 = exit, 3 = level selection
     {
-        for (int j = 0; j < menuTabs.Length; j++)
+        switch (i)
         {
-            menuTabs[j].localScale = new Vector3(0f, 0f, 0f);
+            case 1:
+                menuTabs[1].localScale = new Vector3(1f, 1f, 1);
+                menuTabs[2].localScale = new Vector3(0f, 0f, 1);
+                musicVolumeSlider.value = musicVolume;
+                generalVolumeSlider.value = generalVolume;
+                break;
+            case 2:
+                menuTabs[2].localScale = new Vector3(1f, 1f, 1);
+                menuTabs[1].localScale = new Vector3(0f, 0f, 1);
+                break;
+            default:
+                for (int j = 0; j < menuTabs.Length; j++)
+                {
+                    menuTabs[j].localScale = new Vector3(0f, 0f, 0f);
+                }
+                menuTabs[i].localScale = new Vector3(1f, 1f, 1f);
+                Debug.Log(menuTabs[i].gameObject.name);
+                break;
         }
-        menuTabs[i].localScale = new Vector3(1f, 1f, 1f);
-        Debug.Log(menuTabs[i].gameObject.name);
-
-        if(i==1)
-        {
-            musicVolumeSlider.value = musicVolume;
-            generalVolumeSlider.value = generalVolume;
-        }
-        
     }
 
     public void SetPlayerName()
@@ -116,6 +124,11 @@ public class MainMenu : MonoBehaviour
                 Badges[j - 1].SetActive(false);
             }
         }
+    }
+
+    public void StartTutorial()
+    {
+        SceneManager.LoadScene("Intro_prova");
     }
 
 }

@@ -61,7 +61,7 @@ public class IntroDialogue : MonoBehaviour
 
     public void StartTutorial()
     {
-        //SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Prova video");
     }
 
     public void LoadMainMenu()

@@ -68,6 +68,7 @@ public class LevelManager : MonoBehaviour
     //public int[] interlocutore; 
     public bool pause = false;
     Button dialogueButton;
+    Button dialogueButton2;
     Image playerImage;
     Image characterImage;
 
@@ -85,6 +86,9 @@ public class LevelManager : MonoBehaviour
 
     public bool isBossLevel = false;
 
+    public bool isTutorial = false;
+    int tutorialDialogueIndex = 1;
+
     void Awake()
     {
 
@@ -99,6 +103,7 @@ public class LevelManager : MonoBehaviour
         wordsSource.volume = 1;
 
         dialogueButton = GameObject.Find("DialogueButton").GetComponent<Button>();
+        if(isTutorial) dialogueButton2 = GameObject.Find("DialogueButton2").GetComponent<Button>();
         playerImage = GameObject.Find("playerImage").GetComponent<Image>();
         characterImage = GameObject.Find("characterImage").GetComponent<Image>(); ;
     }
@@ -150,6 +155,7 @@ public class LevelManager : MonoBehaviour
         playerImage.gameObject.SetActive(false);
         characterImage.gameObject.SetActive(false);
         dialogueButton.interactable = false;
+        dialogueButton.transform.localScale = new Vector3(1, 1, 0);
         pause = true;
         levelDialogues[dialogueIndex].allLines[lineIndex] = levelDialogues[dialogueIndex].allLines[lineIndex].Replace("$", playerName);
         dialogueBox.text = levelDialogues[dialogueIndex].allLines[lineIndex];
@@ -170,14 +176,33 @@ public class LevelManager : MonoBehaviour
             if (lineIndex >= levelDialogues[dialogueIndex].allLines.Length)
             {
                 //dialogo finito
-                dialogueButton.onClick.AddListener(() => StartEnemySpawn());
-                dialogueButton.transform.Find("Text").GetComponent<Text>().text = "VAI!";
+                //dialogueButton.onClick.RemoveListener(() => { StartEnemySpawn(); });
+                if (isTutorial)
+                {
+                    dialogueButton.transform.localScale = new Vector3(0, 0, 0);
+                    dialogueButton2.transform.localScale = new Vector3(1, 1, 0);
+                }
+                else
+                {
+                    dialogueButton.onClick.AddListener(() => StartEnemySpawn());
+                    dialogueButton.transform.Find("Text").GetComponent<Text>().text = "VAI!";
+                }
             }
             else
             {
-                //procedi nel dialogo
-                dialogueButton.onClick.AddListener(() => PrintDialogueThenSpawn(dialogueIndex, lineIndex, false));
-                dialogueButton.transform.Find("Text").GetComponent<Text>().text = "Avanti";
+                if (isTutorial)
+                {
+                    dialogueButton.onClick.AddListener(() => PrintDialogueThenSpawn(dialogueIndex, lineIndex, false));
+                    dialogueButton.transform.localScale = new Vector3(1, 1, 0);
+                    dialogueButton2.transform.localScale = new Vector3(0, 0, 0);
+                }
+                else
+                {
+                    //procedi nel dialogo
+                    //dialogueButton.onClick.RemoveListener(() => { PrintDialogueThenSpawn(dialogueIndex, lineIndex, false); });
+                    dialogueButton.onClick.AddListener(() => PrintDialogueThenSpawn(dialogueIndex, lineIndex, false));
+                    dialogueButton.transform.Find("Text").GetComponent<Text>().text = "Avanti";
+                }
             }
         }
         else
@@ -190,6 +215,8 @@ public class LevelManager : MonoBehaviour
 
     public void StartEnemySpawn()
     {
+        dialogueButton.transform.localScale = new Vector3(0, 0, 0);
+        if(isTutorial) dialogueButton2.transform.localScale = new Vector3(0, 0, 0);
         playerImage.gameObject.SetActive(false);
         characterImage.gameObject.SetActive(false);
         dialogueButton.interactable = false;
@@ -364,6 +391,7 @@ public class LevelManager : MonoBehaviour
         //here I check if the input (choice) is the same as the category of the current card.
 
         string result;
+        GameObject.Find("Audio Button").transform.localScale = new Vector3(0, 0, 0);
 
         Categoria cat_choice;
         if (choice == 0)
@@ -394,10 +422,17 @@ public class LevelManager : MonoBehaviour
         //I increase the number of the current card, so I will spawn the next card in the deck
         curCardNumber++;
         //If the number is not higher than the number of the cards available for the level, I proceed to create the next card
-        if (result == "correct")
-            PrintDialogueThenSpawn(1,0, true);
-        else
-            PrintDialogueThenSpawn(2, 0, true);
+        if (!isTutorial)
+        {
+            if (result == "correct")
+                PrintDialogueThenSpawn(1, 0, true);
+            else
+                PrintDialogueThenSpawn(2, 0, true);
+        } else
+        {
+            PrintDialogueThenSpawn(tutorialDialogueIndex, 0, false);
+            tutorialDialogueIndex++;
+        }
     }
 
     public IEnumerator FinishLevel()
@@ -495,16 +530,22 @@ public class LevelManager : MonoBehaviour
 
         //update UI
         
-        if (stars>=1)
+        if (stars>=1 && !isBossLevel && !isTutorial)
         {
             UnlockNextLevel();
+        }
+
+        if(isBossLevel)
+        {
+            GameObject.Find("NextLevelButton").transform.Find("").GetComponent<Text>().text = "Fine";
+            GameObject.Find("NextLevelButton").GetComponent<Button>().interactable = true;
         }
 
         //saving report
         PlayerPrefs.SetString("Report", report);
         Debug.Log("Report saved");
 
-        if(PlayerPrefs.GetInt("MaxLevel") > SceneManager.GetActiveScene().buildIndex)
+        if(PlayerPrefs.GetInt("MaxLevel") > SceneManager.GetActiveScene().buildIndex && !isBossLevel)
         {
             GameObject.Find("NextLevelButton").GetComponent<Button>().interactable = true;
         }
@@ -562,6 +603,11 @@ public class LevelManager : MonoBehaviour
         PlayerPrefs.SetInt("MaxStars3", 0);
         PlayerPrefs.SetInt("MaxStars4", 0);
         PlayerPrefs.SetInt("MaxStars5", 0);
+    }
+
+    public void GoToOutro()
+    {
+        SceneManager.LoadScene("Outro");
     }
 
 }

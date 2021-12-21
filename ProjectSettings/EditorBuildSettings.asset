@@ -13,5 +13,23 @@ EditorBuildSettings:
     guid: f8a3b7e63c96272428b8c919fafb3b98
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
-    guid: 08c4aec91525a7f4e839b85dd8dacaa4
+    guid: 53c93a9686c527445988d241b02305a5
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: fe71c893c457b0a4c800fa5497b4fda4
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: 5fb9f9885e3bf0a48ba1a52bb9e9c3c5
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: f7b01439d2acb12409eccee71c59d466
+  - enabled: 1
+    path: Assets/Scenes/Intro_prova.unity
+    guid: 9fc88d9858a10bf4b858c7e63cfd5d68
+  - enabled: 1
+    path: Assets/Scenes/Prova Video.unity
+    guid: a3d8a10346298964c86bceb1c55685a9
+  - enabled: 1
+    path: Assets/Scenes/Outro.unity
+    guid: 28fee2b256fd2674084238af8ee7fef2
   m_configObjects: {}
