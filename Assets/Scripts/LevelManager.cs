@@ -537,7 +537,7 @@ public class LevelManager : MonoBehaviour
 
         if(isBossLevel)
         {
-            GameObject.Find("NextLevelButton").transform.Find("").GetComponent<Text>().text = "Fine";
+            GameObject.Find("NextLevelButton").transform.Find("NextLevelButtontxt").GetComponent<Text>().text = "Fine";
             GameObject.Find("NextLevelButton").GetComponent<Button>().interactable = true;
         }
 

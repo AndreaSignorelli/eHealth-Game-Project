@@ -20,7 +20,7 @@ public class TimerToMainMenu : MonoBehaviour
     // Update is called once per frame
     IEnumerator WaitForMainMenu()
     {
-        yield return new WaitForSeconds((float)videoTime);
+        yield return new WaitForSeconds((float)videoTime-5.0f);
         SceneManager.LoadScene("MainMenu");
     }
 }

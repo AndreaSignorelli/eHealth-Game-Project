@@ -21,6 +21,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -52,7 +53,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.RawImage
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
-    - UnityEngine.UI.Toggle
   sceneClasses:
     Assets/Scenes/Intro_prova.unity:
     - Class: 1
@@ -635,8 +635,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1490}
     - Class: 114
       Script: {instanceID: 1492}
-    - Class: 114
-      Script: {instanceID: 1680}
     - Class: 114
       Script: {instanceID: 1752}
     - Class: 114

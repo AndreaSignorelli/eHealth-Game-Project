@@ -23,24 +23,42 @@ public class MainMenu : MonoBehaviour
 
     public GameObject[] Badges;
 
+    public void Awake()
+    {
+        ResetAllPlayerPrefs();
+        //Debug.Log("debug1");
+
+        if (PlayerPrefs.GetString("PlayerName") == "")
+        {
+            Focus(1);
+            //Debug.Log("debug2");
+            PlayerPrefs.SetInt("MaxLevel", 1);
+        }
+        else
+        {
+            //Debug.Log("debug3");
+            Focus(0);
+        }
+
+        SpawnBadges();
+    }
+    
     public void Start()
     {
         musicVolume = PlayerPrefs.GetFloat("MusicVolume");
         generalVolume = PlayerPrefs.GetFloat("GeneralVolume");
+
+        if(musicVolume==0 || musicVolume==1)
+        {
+            musicVolume = 0.2f;
+            generalVolume = 0.5f;
+        }
 
         musicVolumeSlider.value = musicVolume;
         generalVolumeSlider.value = generalVolume;
 
         musicAudioSource.volume = musicVolume;
         generalAudioSource.volume = generalVolume;
-
-        if(PlayerPrefs.GetString("PlayerName")=="")
-        {
-            Focus(1);
-        }
-        else Focus(0);
-
-        SpawnBadges();
 
     }
 
@@ -77,23 +95,25 @@ public class MainMenu : MonoBehaviour
 
     public void Focus(int i) //0 = main menu, 1 = options, 2 = exit, 3 = level selection
     {
+        for (int j = 0; j < menuTabs.Length; j++)
+        {
+            menuTabs[j].localScale = new Vector3(0f, 0f, 0f);
+        }
         switch (i)
         {
             case 1:
+                menuTabs[0].localScale = new Vector3(1f, 1f, 1);
                 menuTabs[1].localScale = new Vector3(1f, 1f, 1);
                 menuTabs[2].localScale = new Vector3(0f, 0f, 1);
                 musicVolumeSlider.value = musicVolume;
                 generalVolumeSlider.value = generalVolume;
                 break;
             case 2:
+                menuTabs[0].localScale = new Vector3(1f, 1f, 1);
                 menuTabs[2].localScale = new Vector3(1f, 1f, 1);
                 menuTabs[1].localScale = new Vector3(0f, 0f, 1);
                 break;
             default:
-                for (int j = 0; j < menuTabs.Length; j++)
-                {
-                    menuTabs[j].localScale = new Vector3(0f, 0f, 0f);
-                }
                 menuTabs[i].localScale = new Vector3(1f, 1f, 1f);
                 Debug.Log(menuTabs[i].gameObject.name);
                 break;
@@ -129,6 +149,11 @@ public class MainMenu : MonoBehaviour
     public void StartTutorial()
     {
         SceneManager.LoadScene("Intro_prova");
+    }
+
+    public void ResetAllPlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
 }
