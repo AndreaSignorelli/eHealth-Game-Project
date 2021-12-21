@@ -25,6 +25,7 @@ public class MainMenu : MonoBehaviour
 
     public void Awake()
     {
+        //ResetAllPlayerPrefs();
         if (PlayerPrefs.GetString("FirstPlay") == "")
         {
             ResetAllPlayerPrefs();

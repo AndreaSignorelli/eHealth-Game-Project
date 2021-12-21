@@ -8693,7 +8693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: CREDITS
+  m_text: CREDITI
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10961,13 +10961,13 @@ MonoBehaviour:
     Gianluca Caiani, Prof. Chiara Piazzalunga, Prof. Milad Malavolti, and Prof. Lorenzo
     Gianquintieri, whose instructions, commands, and remarks were fundamental for
     the completion of this project.\r\nSpecial Thanks to the University of Insubria
-    for providing a repository of words that were needed for the completion of this
-    project.\r\n\r\nDisclaimer\r\nSpaceLand is a video game developed as an academic
-    project and submitted in partial fulfilment of the requirements for the degree
-    of Laurea Magistrale in Biomedical Engineering at Politecnico di Milano, Milan,
-    Italy. \r\nThe use of any copyright protected element throughout this work serves
-    only the aforementioned purpose and is not intending to exploit any protected
-    material for commercial purposes, without the full consent of its owner.\r\n\nResources
+    for providing a repository of words and sounds that were needed for the completion
+    of this project.\r\n\r\nDisclaimer\r\nSpaceLand is a video game developed as
+    an academic project and submitted in partial fulfilment of the requirements for
+    the degree of Laurea Magistrale in Biomedical Engineering at Politecnico di Milano,
+    Milan, Italy. \r\nThe use of any copyright protected element throughout this
+    work serves only the aforementioned purpose and is not intending to exploit any
+    protected material for commercial purposes, without the full consent of its owner.\r\n\nResources
     taken from:\nhttps://www.flaticon.com/\nhttps://www.canva.com/\n\"8-bit Space
     Groove\" By HeatleyBros\nhttps://www.youtube.com/watch?v=Bok8nLviThg&ab_channel=HeatleyBros-RoyaltyFreeVideoGameMusic\nhttps://uppbeat.io/\n\nPolitecnico
     di Milano. 2021. All Rights Reserved.  \r\n"
