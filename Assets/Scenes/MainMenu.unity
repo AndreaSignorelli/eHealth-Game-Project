@@ -3517,7 +3517,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 1ed7f22796d12fd4a84ee9174e79e02e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 19e1c0ba448696d45ae8144f3ec00c54, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -4020,10 +4020,10 @@ RectTransform:
   m_Father: {fileID: 669163230}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 2.7975006, y: 0.7330017}
-  m_SizeDelta: {x: 720.0533, y: 382.7559}
+  m_SizeDelta: {x: 820.0533, y: 482.7559}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &632151284
 MonoBehaviour:
@@ -7556,7 +7556,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: No, I have a mission to complete
+  m_text: No, ho una missione da compiere!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7666,10 +7666,10 @@ RectTransform:
   m_Father: {fileID: 283442937}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 343, y: 169}
-  m_SizeDelta: {x: 36.6244, y: 46.0356}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 293, y: 104}
+  m_SizeDelta: {x: 36.624405, y: 46.0356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1056420497
 MonoBehaviour:
@@ -8158,7 +8158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Yes, Be Back Soon
+  m_text: Si, ma torno presto!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10152,7 +10152,7 @@ MonoBehaviour:
   m_text: "Siamo arrivati al Pianeta Vulcano, ottimo! \nIn questo pianeta verrai
     interrogato sulla lettera SC, la prima lettera delle parole che gli alieni ti
     mostreranno. Tu dovrai dire se il suo suono \xE8 dolce o duro. \n\nTi faccio
-    un esempio: \u201CSCACCHI ha un suono duro, SCIAME ha un suono dolce"
+    un esempio: \u201CSCACCHI\" ha un suono duro, \"SCIAME\" ha un suono dolce"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10262,10 +10262,10 @@ RectTransform:
   m_Father: {fileID: 1769552911}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 341, y: 159}
-  m_SizeDelta: {x: 59.6536, y: 44.4972}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 291, y: 109}
+  m_SizeDelta: {x: 59.653595, y: 44.4972}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1404916193
 MonoBehaviour:
@@ -10918,8 +10918,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0}
-  m_SizeDelta: {x: 443.2638, y: 322}
+  m_AnchoredPosition: {x: 0.4926, y: -0.9853}
+  m_SizeDelta: {x: 454.1023, y: 339.7356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467486117
 MonoBehaviour:
@@ -10967,7 +10967,9 @@ MonoBehaviour:
     of Laurea Magistrale in Biomedical Engineering at Politecnico di Milano, Milan,
     Italy. \r\nThe use of any copyright protected element throughout this work serves
     only the aforementioned purpose and is not intending to exploit any protected
-    material for commercial purposes, without the full consent of its owner.\r\n\r\nPolitecnico
+    material for commercial purposes, without the full consent of its owner.\r\n\nResources
+    taken from:\nhttps://www.flaticon.com/\nhttps://www.canva.com/\n\"8-bit Space
+    Groove\" By HeatleyBros\nhttps://www.youtube.com/watch?v=Bok8nLviThg&ab_channel=HeatleyBros-RoyaltyFreeVideoGameMusic\nhttps://uppbeat.io/\n\nPolitecnico
     di Milano. 2021. All Rights Reserved.  \r\n"
 --- !u!222 &1467486118
 CanvasRenderer:
@@ -13323,10 +13325,10 @@ RectTransform:
   m_Father: {fileID: 669163230}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 343, y: 169}
-  m_SizeDelta: {x: 36.6244, y: 46.0356}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 293, y: 90}
+  m_SizeDelta: {x: 36.624405, y: 46.0356}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1775201034
 MonoBehaviour:
