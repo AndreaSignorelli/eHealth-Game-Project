@@ -26,6 +26,7 @@ public class MainMenu : MonoBehaviour
     public void Awake()
     {
         //ResetAllPlayerPrefs();
+        //PlayerPrefs.SetString("FirstPlay", "");
         if (PlayerPrefs.GetString("FirstPlay") == "")
         {
             ResetAllPlayerPrefs();
@@ -42,7 +43,7 @@ public class MainMenu : MonoBehaviour
         else
         {
             //Debug.Log("debug3");
-            Focus(0);
+            Focus(1);
         }
 
         SpawnBadges();
@@ -133,10 +134,17 @@ public class MainMenu : MonoBehaviour
 
     public void PrintReport()
     {
-        string path = "Assets/Resources/report" + System.DateTime.Now + ".txt";
-        StreamWriter writer = new StreamWriter(path, true);
-        writer.WriteLine(PlayerPrefs.GetString("Report"));
-        writer.Close();
+        
+        string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop) + "/Report.txt";
+        Debug.Log(path);
+        if(!File.Exists(path))
+        {
+            File.WriteAllText(path, "REPORT FILE");
+        }
+        //StreamWriter writer = new StreamWriter(path, true);
+        File.AppendAllText(path, PlayerPrefs.GetString("Report"));
+        //writer.WriteLine(PlayerPrefs.GetString("Report"));
+        //writer.Close();
     }
 
     public void SpawnBadges()
